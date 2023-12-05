@@ -25,7 +25,7 @@ public class Pinjam {
 
     }
 
-    protected void kembali(User user){
+    protected void kembali(User user, int denda, String kategori){
         Scanner input = new Scanner(System.in);
 
 
@@ -39,14 +39,15 @@ public class Pinjam {
         System.out.printf("\u001B[34m║ TANGGAL PERJANJIAN : " + String.format("%-11s", this.tgl_perjanjian) + "║\u001B[0m\n");
         System.out.printf("\u001B[34m║ TANGGAL KEMBALI    : " + String.format("%-11s", tgl_kembali_asli) +"║\u001B[0m\n");
         System.out.printf("\u001B[34m║ SELISIH HARI       : " + String.format("%-11d", selisih) +"║\u001B[0m\n");
-        System.out.printf("\u001B[34m║ DENDA              : Rp. " + String.format("%-7d", countDenda(selisih)) +"║\u001B[0m\n");
+        System.out.printf("\u001B[34m║ KATEGORI DENDA     : " + String.format("%-11s", kategori) +"║\u001B[0m\n");
+        System.out.printf("\u001B[34m║ DENDA              : Rp. " + String.format("%-7d", countDenda(selisih,denda)) +"║\u001B[0m\n");
         System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
         
         this.status = "Selesai";
         bk.setAktif();
         bk.addStock();
         
-        user.addDenda(countDenda(selisih));
+        user.addDenda(countDenda(selisih,denda));
     }
     
     protected String getTglPinjam(){
@@ -70,8 +71,8 @@ public class Pinjam {
         return selisih;
     }
 
-    protected long countDenda(long selisih){
-        return selisih != 0 ? selisih*5000 : 0;
+    protected long countDenda(long selisih, int denda){
+        return selisih != 0 ? selisih*denda : 0;
     }
 
 

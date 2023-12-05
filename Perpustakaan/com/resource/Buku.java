@@ -9,7 +9,7 @@ public class Buku {
     private String kategori;
 
 
-    public Buku(String judul, String penulis){
+    public Buku(String judul, String penulis, String kategori){
         this.judul = judul;
         this.penulis = penulis;
         this.kategori = kategori;
@@ -49,5 +49,9 @@ public class Buku {
 
     protected int getStock(){
         return stock;
+    }
+
+    protected String getKategori(){
+        return kategori;
     }
 }

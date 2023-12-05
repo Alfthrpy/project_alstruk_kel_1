@@ -35,13 +35,13 @@ public class User {
     protected void tampilRiwayat() {
         if (finishedPinjam.size() != 0) {
             for (int i = 0; i < finishedPinjam.size(); i++) {
-                System.out.println("\u001B[34m╔════════════════════════════════╗\u001B[0m");
-                System.out.println("\u001B[34m║ No Pinjam " + (i + 1) + String.format("%20s", " ") + "║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[36mTanggal pinjam  : " + String.format("%-13s", finishedPinjam.get(i).getTglPinjam()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[36mTanggal kembali : " + String.format("%-13s", finishedPinjam.get(i).getTglKembaliAsli()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[32mJudul buku      : " + String.format("%-13s", finishedPinjam.get(i).getBuku().getJudul()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-13s", finishedPinjam.get(i).getStatus()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m╚════════════════════════════════╝\u001B[0m");
+                System.out.println("\u001B[34m╔═══════════════════════════════════════════════╗\u001B[0m");
+                System.out.println("\u001B[34m║ No Pinjam " + (i + 1) + String.format("%35s", " ") + "║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[36mTanggal pinjam  : " + String.format("%-28s", finishedPinjam.get(i).getTglPinjam()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[36mTanggal kembali : " + String.format("%-28s", finishedPinjam.get(i).getTglKembaliAsli()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[32mJudul buku      : " + String.format("%-28s", finishedPinjam.get(i).getBuku().getJudul()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-28s", finishedPinjam.get(i).getStatus()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m╚═══════════════════════════════════════════════╝\u001B[0m");
             }
         } else {
             System.out.println("\u001B[31mRiwayat Peminjaman Kosong...\u001B[0m");
@@ -52,13 +52,13 @@ public class User {
     protected void tampilStatus() {
         if (notFinishedPinjam.size() != 0) {
             for (int i = 0; i < notFinishedPinjam.size(); i++) {
-                System.out.println("\u001B[34m╔════════════════════════════════╗\u001B[0m");
-                System.out.println("\u001B[34m║ No Pinjam " + (i + 1) + String.format("%20s", " ") + "║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[36mTanggal pinjam  : " + String.format("%-13s", notFinishedPinjam.get(i).getTglPinjam()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[36mTanggal kembali : " + String.format("%-13s", notFinishedPinjam.get(i).getTglJanji()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[32mJudul buku      : " + String.format("%-13s", notFinishedPinjam.get(i).getBuku().getJudul()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-13s", notFinishedPinjam.get(i).getStatus()) + "\u001B[34m║\u001B[0m");
-                System.out.println("\u001B[34m╚════════════════════════════════╝\u001B[0m");
+                System.out.println("\u001B[34m╔═══════════════════════════════════════════════╗\u001B[0m");
+                System.out.println("\u001B[34m║ No Pinjam " + (i + 1) + String.format("%35s", " ") + "║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[36mTanggal pinjam  : " + String.format("%-28s", notFinishedPinjam.get(i).getTglPinjam()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[36mTanggal kembali : " + String.format("%-28s", notFinishedPinjam.get(i).getTglJanji()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[32mJudul buku      : " + String.format("%-28s", notFinishedPinjam.get(i).getBuku().getJudul()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-28s", notFinishedPinjam.get(i).getStatus()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m╚═══════════════════════════════════════════════╝\u001B[0m");
             }
         } else {
             System.out.println("\u001B[31mAnda tidak sedang meminjam buku!...\u001B[0m");
@@ -85,6 +85,10 @@ public class User {
             System.out.println("kembalian anda : Rp." + Math.abs(denda));
             denda = 0;
         }
+    }
+
+    protected int getJmlPinjam(){
+        return notFinishedPinjam.size();
     }
 
 

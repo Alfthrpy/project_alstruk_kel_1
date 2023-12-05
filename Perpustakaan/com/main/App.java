@@ -22,17 +22,17 @@ public class App {
         Rak rak2 = new Rak(3);
 
         //BUKU BUKU
-        Buku bk = new Buku("Bumi","Tereliye");
-        Buku bk1 = new Buku("Bulan","Tereliye");
-        Buku bk2= new Buku("Matahari","Tereliye");
+        Buku bk = new Buku("Bumi","Tereliye","A");
+        Buku bk1 = new Buku("Bulan","Tereliye","A");
+        Buku bk2= new Buku("Matahari","Tereliye","B");
 
-        Buku bk3 = new Buku("Geez & Ann","Rintik Sedu");
-        Buku bk4 = new Buku("Laut Bercerita","Anwar Riza");
-        Buku bk5= new Buku("Filosofi Kopi","Fadil Anwar");
+        Buku bk3 = new Buku("Geez & Ann","Rintik Sedu","C");
+        Buku bk4 = new Buku("Laut Bercerita","Anwar Riza","A");
+        Buku bk5= new Buku("Filosofi Kopi","Fadil Anwar","A");
         
-        Buku bk6 = new Buku("Algoritma & Pemrograman","Rizki I'jazi");
-        Buku bk7 = new Buku("Belajar Java Dalam 1 Hari","Fathir Ar-Ridwan");
-        Buku bk8= new Buku("Memahami Wanita","Ginanjar");
+        Buku bk6 = new Buku("Algoritma & Pemrograman","Rizki I'jazi","D");
+        Buku bk7 = new Buku("Belajar Java Dalam 1 Hari","Fathir Ar-Ridwan","D");
+        Buku bk8= new Buku("Memahami Wanita","Ginanjar","A");
 
 
         //TAMBAH KE SISTEM

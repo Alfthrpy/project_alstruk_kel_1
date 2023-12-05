@@ -1,15 +1,21 @@
 package com.resource;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map;
 
 public class Sistem {
     private ArrayList<User> users = new ArrayList<User>();
     private ArrayList<Rak> rakrak = new ArrayList<Rak>();
     private ArrayList<Admin> admins = new ArrayList<Admin>();
+    private HashMap<String, Integer> kategori_denda = new HashMap<String, Integer>();
 
     public Sistem(Admin admin, User user) {
         admins.add(admin);
         users.add(user);
+        kategori_denda.put("A",3000);
+        kategori_denda.put("B",5000);
+        kategori_denda.put("C",8000);
+        kategori_denda.put("D",10000);
     }
 
     protected void addUser(){
@@ -48,18 +54,21 @@ public class Sistem {
     }
 
     protected void addBook(){
-        String judul,penulis;
+        String judul,penulis,kategori;
         int koderk;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Masukan Judul Buku :");
         judul = scanner.nextLine();
         System.out.print("Masukan Penulis :");
         penulis = scanner.nextLine();
+        System.out.print("Masukan Kategori Buku :");
+        kategori = scanner.nextLine();
         System.out.print("Masukan kode rak yang akan di tempati : ");
         koderk = scanner.nextInt();
+        scanner.nextLine();
 
         Rak rak = getRak(koderk);
-        Buku bk = new Buku(judul,penulis);
+        Buku bk = new Buku(judul,penulis,kategori);
         rak.addBuku(bk);
         System.out.println("Buku Berhasil di tambahkan ke rak " + rak.getKode());
     }
@@ -81,6 +90,11 @@ public class Sistem {
 
 
     protected void pinjamBuku(User user){
+        if (user.getDenda() > 0){
+            System.out.println("\u001B[31mAnda Mempunyai Denda!\u001B[0m");
+            return;
+        }
+
         Scanner input = new Scanner(System.in);
 
         String tgl_pinjam,tgl_kembali;
@@ -160,6 +174,11 @@ public class Sistem {
     }
 
     protected void kembaliBuku(User user){
+        if(user.getJmlPinjam() <= 0){
+            System.out.println("\u001B[31mAnda tidak sedang meminjam Buku!\u001B[0m");
+            return;
+        }
+
         Scanner input = new Scanner(System.in);
         int pil;
         String tgl_kembali;
@@ -169,8 +188,9 @@ public class Sistem {
         pil = input.nextInt();
         input.nextLine();
         Pinjam pj = user.getPinjam(pil-1);
+        int denda = getDendaByKategori(pj.getBuku());
         user.finishedPinjam(pj);
-        pj.kembali(user);
+        pj.kembali(user,denda,pj.getBuku().getKategori());
 
     }
 
@@ -257,6 +277,15 @@ public class Sistem {
         System.out.println("Pembayaran selesai!");
         displayDenda(user);
 
+    }
+
+    protected int getDendaByKategori(Buku buku){
+        String kategori = buku.getKategori();
+        return kategori_denda.get(kategori);
+    }
+
+    protected void displayKategoriDenda(){
+        kategori_denda.display();
     }
 
 }
