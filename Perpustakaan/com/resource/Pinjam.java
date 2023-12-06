@@ -12,7 +12,12 @@ public class Pinjam {
     private User user;
     private String status = "Belum Selesai";
 
-    Pinjam(User user, String tgl_pinjam, String tgl_perjanjian, Buku bk){
+    Pinjam(User user, String tgl_pinjam, Buku bk){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate tgl_pinjam_date = LocalDate.parse(tgl_pinjam,format);
+        LocalDate tgl_kembali_date = tgl_pinjam_date.plusDays(7);
+        String tgl_perjanjian = tgl_kembali_date.format(format);
+        
         this.tgl_pinjam = tgl_pinjam;
         this.tgl_perjanjian = tgl_perjanjian;
         this.user = user;
@@ -63,7 +68,7 @@ public class Pinjam {
     }
 
     protected long selisihHari(String tgl_pinjam,String tgl_kembali){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate pj = LocalDate.parse(tgl_pinjam,format);
         LocalDate kembali = LocalDate.parse(tgl_kembali,format);
 

@@ -18,6 +18,10 @@ public class Sistem {
         kategori_denda.put("D",10000);
     }
 
+    public void initRak(Rak rak){
+        rakrak.add(rak);
+    }
+
     protected void addUser(){
         Scanner scanner = new Scanner(System.in);
         String nama,nim;
@@ -31,9 +35,6 @@ public class Sistem {
         System.out.println("User berhasil di tambahkan");
     }
 
-
-
-
     protected void addRak(){
         Scanner scanner = new Scanner(System.in);
         int kode;
@@ -42,15 +43,6 @@ public class Sistem {
         Rak rak = new Rak(kode);
         rakrak.add(rak);
         System.out.println("Rak baru berhasil di tambahkan");
-    }
-
-    protected Rak getRak(int kode){
-        for(Rak rak :rakrak){
-            if(rak.getKode() == kode){
-                return rak;
-            }
-        }
-        return null;
     }
 
     protected void addBook(){
@@ -84,11 +76,6 @@ public class Sistem {
         }
     }
 
-    protected void tampilBukuRak(int idx){
-        rakrak.get(idx).tampilBuku(rakrak);
-    }
-
-
     protected void pinjamBuku(User user){
         if (user.getDenda() > 0){
             System.out.println("\u001B[31mAnda Mempunyai Denda!\u001B[0m");
@@ -109,8 +96,6 @@ public class Sistem {
 
         System.out.print("Masukan tanggal peminjaman :");
         tgl_pinjam = input.nextLine();
-        System.out.print("Masukan tanggal kembali :");
-        tgl_kembali = input.nextLine();
 
     
         Rak rk = getRak(idx_rak);
@@ -119,7 +104,7 @@ public class Sistem {
             int stock = bk.getStock();
             if(stock > 0){
                 if(user.getDenda() == 0){
-                    Pinjam pj = new Pinjam(user,tgl_pinjam,tgl_kembali,bk);
+                    Pinjam pj = new Pinjam(user,tgl_pinjam,bk);
                     user.addPinjam(pj);
                 } else {
                     System.out.println("Anda Mempunyai Denda!");
@@ -152,7 +137,7 @@ public class Sistem {
         }
         System.out.println();
         System.out.println();
-    }   
+    }
 
     protected User loginUser(String username, String nim){
         for(int i=0; i < users.size(); i++){
@@ -163,7 +148,7 @@ public class Sistem {
         return null;
     }
 
-    protected Admin loginAdmin(String username, String pass){
+     protected Admin loginAdmin(String username, String pass){
         for(int i=0; i <admins.size(); i++){
             if(admins.get(i).getNama().equals(username) && admins.get(i).getKode().equals(pass)){
                 return admins.get(i);
@@ -202,30 +187,9 @@ public class Sistem {
         user.tampilStatus();
     }
 
-    protected int getStockBook(Buku buku){
-        int stock = 0;
-        
-        for(int i = 0; i < rakrak.size(); i++){
-            ArrayList<Buku> buku_buku = rakrak.get(i).getStorage();
-            for(int j = 0; j <buku_buku.size(); j++){
-                if(buku_buku.get(j).getJudul().equals(buku.getJudul())){
-                    stock += 1;
-                }
-            }
-        }
-        return stock;
-    }
 
-    protected int getJmlBuku(){
-        int stock = 0;
-        
-        for(int i = 0; i < rakrak.size(); i++){
-            ArrayList<Buku> buku_buku = rakrak.get(i).getStorage();
-            for(int j = 0; j <buku_buku.size(); j++){
-                stock += buku_buku.get(i).getStock();
-            }
-        }
-        return stock;
+    protected void tampilBukuRak(int idx){
+        rakrak.get(idx).tampilBuku(rakrak);
     }
 
     protected void searchBook(){
@@ -259,10 +223,6 @@ public class Sistem {
 
     }
 
-    public void initRak(Rak rak){
-        rakrak.add(rak);
-    }
-
     protected void displayDenda(User user){
         System.out.println("Denda anda adalah : Rp." + user.getDenda());
     }
@@ -279,13 +239,23 @@ public class Sistem {
 
     }
 
+    protected void displayKategoriDenda(){
+        kategori_denda.display();
+    }
+
+    protected Rak getRak(int kode){
+        for(Rak rak :rakrak){
+            if(rak.getKode() == kode){
+                return rak;
+            }
+        }
+        return null;
+    }    
+
     protected int getDendaByKategori(Buku buku){
         String kategori = buku.getKategori();
         return kategori_denda.get(kategori);
     }
 
-    protected void displayKategoriDenda(){
-        kategori_denda.display();
-    }
 
 }
