@@ -5,13 +5,17 @@ import java.util.ArrayList;
 public class User {
     private String nama;
     private String nim;
+    private String jurusan;
+    private String fakultas;
     private ArrayList<Pinjam> notFinishedPinjam = new ArrayList<Pinjam>();
     private ArrayList<Pinjam> finishedPinjam = new ArrayList<Pinjam>();
     private long denda = 0;
 
-    public User(String nama, String nim){
+    public User(String nama, String nim, String jurusan, String fakultas){
         this.nama = nama;
         this.nim = nim;
+        this.fakultas = fakultas;
+        this.jurusan = jurusan;
     }
 
     protected void addPinjam(Pinjam pj){
@@ -30,7 +34,18 @@ public class User {
     protected String getNim(){
         return nim;
     }
+    
+    protected String getJurusan(){
+        return jurusan;
+    }
 
+    protected int getJmlRiwayat(){
+        return finishedPinjam.size();
+    }
+
+    protected String getFakultas(){
+        return fakultas;
+    }
 
     protected void tampilRiwayat() {
         if (finishedPinjam.size() != 0) {
@@ -90,6 +105,10 @@ public class User {
 
     protected int getJmlPinjam(){
         return notFinishedPinjam.size();
+    }
+
+    protected int getJmlPinjamSelesai(){
+        return finishedPinjam.size();
     }
 
 

@@ -6,19 +6,20 @@ public class Display {
     protected void displayMenuUser(Sistem sistem,User user){
         Scanner scanner = new Scanner(System.in);
         while(true){
-            System.out.println("\u001B[34m╔════════════════════════════════╗\u001B[0m");
-            System.out.println("\u001B[34m║           \u001B[33mPERPUSTAKAAN\u001B[34m         ║\u001B[0m");
-            System.out.println("\u001B[34m║          \u001B[35mSelamat Datang\u001B[34m        ║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m1\u001B[34m| \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m2\u001B[34m| \u001B[39mCari Buku                    \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m3\u001B[34m| \u001B[39mPinjam Buku                  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m4\u001B[34m| \u001B[39mKembalikan Buku              \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m| \u001B[39mTampilkan Riwayat Peminjaman \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m| \u001B[39mTampilkan Status Peminjaman  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m| \u001B[39mCek denda                    \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m| \u001B[39mBayar Denda                  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m| \u001B[39mLog out                      \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m╚════════════════════════════════╝\u001B[0m");
+            System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[34m║           \u001B[33mPERPUSTAKAAN\u001B[34m          ║\u001B[0m");
+            System.out.println("\u001B[34m║          \u001B[35mSelamat Datang\u001B[34m         ║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m1\u001B[34m | \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m2\u001B[34m | \u001B[39mCari Buku                    \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m3\u001B[34m | \u001B[39mPinjam Buku                  \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m4\u001B[34m | \u001B[39mKembalikan Buku              \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m | \u001B[39mTampilkan Riwayat Peminjaman \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m | \u001B[39mTampilkan Status Peminjaman  \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m | \u001B[39mCek denda                    \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m | \u001B[39mBayar Denda                  \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m | \u001B[39mProfil                       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m10\u001B[34m| \u001B[39mLog out                      \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
             System.out.print("Pilihan anda : ");
             int pil = scanner.nextInt();
             switch(pil){
@@ -56,6 +57,10 @@ public class Display {
                     break;
                 case 9:
                     clearConsole();
+                    sistem.displayProfile(user);
+                    break;
+                case 10:
+                    clearConsole();
                     return;
             }
         }
@@ -74,9 +79,10 @@ public class Display {
             System.out.println("\u001B[34m║\u001B[33m2\u001B[34m| \u001B[39mTambah Rak                   \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m3\u001B[34m| \u001B[39mTambah User                  \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m4\u001B[34m| \u001B[39mTampilkan User               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m| \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m| \u001B[39mTampilkan Kategori Denda     \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m| \u001B[39mTampilkan Profile User       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m| \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m| \u001B[39mTampilkan Kategori Denda     \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m╚════════════════════════════════╝\u001B[0m");
             System.out.print("Pilihan anda : ");
             pil = scanner.nextInt();
@@ -101,13 +107,17 @@ public class Display {
                     break;
                 case 5:
                     clearConsole();
-                    sistem.tampilBuku();
+                    sistem.displayProfileAll();
                     break;
                 case 6:
                     clearConsole();
-                    sistem.displayKategoriDenda();
+                    sistem.tampilBuku();
                     break;
                 case 7:
+                    clearConsole();
+                    sistem.displayKategoriDenda();
+                    break;
+                case 8:
                     clearConsole();
                     return;
             }

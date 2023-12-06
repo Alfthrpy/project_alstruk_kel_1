@@ -27,25 +27,6 @@ public class Rak {
         storage.remove(bk);
     }
 
-    // int getStockBookatRak(Buku bk){
-    //     int stock = 0;
-    //     for(int i = 0; i < storage.size(); i++){
-    //         if(storage.get(i).getJudul().equals(bk.getJudul())){
-    //             stock++;
-    //         }
-    //     }
-    //     return stock;
-    // }
-
-    // int getBookTersedia(Buku bk){
-    //     int jml = 0;
-    //     for(int i = 0; i < storage.size(); i++){
-    //         if(storage.get(i).getJudul().equals(bk.getJudul()) && storage.get(i).getStatus().equals("Tersedia")){
-    //             jml++;
-    //         }
-    //     }
-    //     return jml;
-    // }
 
     protected void tampilBuku(ArrayList<Rak> rakrak) {
         // Menentukan lebar maksimum untuk setiap kolom

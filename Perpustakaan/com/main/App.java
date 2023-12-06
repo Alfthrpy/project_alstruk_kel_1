@@ -14,7 +14,7 @@ public class App {
 
         //USER & ADMIN
         Admin min = new Admin("Fathir","001");
-        User user = new User("Ridwan","001");
+        User user = new User("Ridwan","001","Teknik Informatika","Saintek");
 
         //RAK
         Rak rak = new Rak(1);

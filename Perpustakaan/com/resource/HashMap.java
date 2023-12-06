@@ -38,9 +38,7 @@ public class HashMap<Key, Value> {
             size++;
         }
 
-        if (size > table.length * 0.75) {
-            resizeTable();
-        }
+
     }
 
     public Value get(Key key) {
@@ -70,23 +68,6 @@ public class HashMap<Key, Value> {
         return (hash & 0x7FFFFFFF) % table.length; // Modulo to stay within array bounds
     }
 
-    private void resizeTable() {
-        int newCapacity = table.length * 2;
-        Node<Key, Value>[] newTable = new Node[newCapacity];
-
-        // Rehash all existing elements into the new table
-        for (Node<Key, Value> node : table) {
-            while (node != null) {
-                int newIndex = getIndex(node.hash);
-                Node<Key, Value> next = node.next;
-                node.next = newTable[newIndex];
-                newTable[newIndex] = node;
-                node = next;
-            }
-        }
-
-        table = newTable;
-    }
 
     public void display() {
         String reset = "\u001B[0m";

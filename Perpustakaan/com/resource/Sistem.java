@@ -24,13 +24,17 @@ public class Sistem {
 
     protected void addUser(){
         Scanner scanner = new Scanner(System.in);
-        String nama,nim;
+        String nama,nim,jurusan,fakultas;
 
         System.out.print("Masukan Nama :");
         nama = scanner.nextLine();
         System.out.print("Masukan NIM : ");
         nim = scanner.nextLine();
-        User user = new User(nama,nim);
+        System.out.print("Masukan Jurusan :");
+        jurusan = scanner.nextLine();
+        System.out.print("Masukan Fakultas : ");
+        fakultas = scanner.nextLine();
+        User user = new User(nama,nim,jurusan,fakultas);
         users.add(user);
         System.out.println("User berhasil di tambahkan");
     }
@@ -122,18 +126,22 @@ public class Sistem {
 
         int maxName = 0;
         int maxNim = 0;
+        int maxJurusan = 0;
+        int maxFakultas = 0;
 
         for (User user : users) {
             maxName = Math.max(maxName, user.getNama().length());
             maxNim = Math.max(maxNim, user.getNim().length());
+            maxJurusan = Math.max(maxJurusan, user.getJurusan().length());
+            maxFakultas = Math.max(maxFakultas, user.getFakultas().length());
         }
 
-        System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[34m║          \u001B[96mDAFTAR USER            \u001B[34m║\u001B[0m");
-        System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
-        System.out.printf("   \u001B[33m%-2s \u001B[0m| \u001B[33m%-"+maxName+"s \u001B[0m| \u001B[33m%-"+maxNim+"s\u001B[0m\n", "No", "Nama", "NIM");
+        System.out.println("\u001B[34m╔══════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[34m║                      \u001B[96mDAFTAR USER                         \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╚══════════════════════════════════════════════════════════╝\u001B[0m");
+        System.out.printf("   \u001B[33m%-2s \u001B[0m| \u001B[33m%-"+maxName+"s \u001B[0m| \u001B[33m%-"+maxNim+"s\u001B[0m | \u001B[33m%-"+maxJurusan+"s\u001B[0m | \u001B[33m%-"+maxFakultas+"s\u001B[0m\n", "No", "Nama", "NIM", "Jurusan" ,"Fakultas");
         for(int i=0; i < users.size(); i++){
-            System.out.printf("   %-2d | %-"+maxName+"s | %-"+maxNim+"s\n",i+1,users.get(i).getNama(),users.get(i).getNim());
+            System.out.printf("   %-2d | %-"+maxName+"s | %-"+maxNim+"s | %-"+maxJurusan+"s | %-"+maxFakultas+"s\n",i+1,users.get(i).getNama(),users.get(i).getNim(), users.get(i).getJurusan(), users.get(i).getFakultas());
         }
         System.out.println();
         System.out.println();
@@ -187,9 +195,7 @@ public class Sistem {
     }
 
 
-    protected void tampilBukuRak(int idx){
-        rakrak.get(idx).tampilBuku(rakrak);
-    }
+
 
     protected void searchBook(){
         Scanner input = new Scanner(System.in);
@@ -224,6 +230,28 @@ public class Sistem {
 
     protected void displayDenda(User user){
         System.out.println("Denda anda adalah : Rp." + user.getDenda());
+    }
+
+    protected void displayProfile(User user){
+        System.out.println("\u001B[34m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[34m║                     \u001B[35mPROFIL MAHASISWA                    \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╠═════════════════════════════════════════════════════════╣\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[36mNama                      : " + String.format("%-28s", user.getNama()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[36mNIM                       : " + String.format("%-28s", user.getNim()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[32mJurusan                   : " + String.format("%-28s", user.getJurusan()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[35mFakultas                  : " + String.format("%-28s", user.getFakultas()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[35mBuku yang telah di pinjam : " + String.format("%-28s", user.getJmlPinjamSelesai()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+    }
+
+    protected void displayProfileAll(){
+        Scanner input = new Scanner(System.in);
+        tampilUser();
+        System.out.print("Mahasiswa mana yang ingin ditampilkan : ");
+        int pil = input.nextInt();
+        input.nextLine();
+        displayProfile(users.get(pil+1));
+ 
     }
 
     protected void bayarDenda(User user){
