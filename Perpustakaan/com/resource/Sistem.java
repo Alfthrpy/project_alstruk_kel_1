@@ -84,7 +84,7 @@ public class Sistem {
 
         Scanner input = new Scanner(System.in);
 
-        String tgl_pinjam,tgl_kembali;
+        String tgl_pinjam;
         int idx_bk,idx_rak;
         tampilBuku();
         System.out.println("Masukan kode rak :");
@@ -166,7 +166,6 @@ public class Sistem {
 
         Scanner input = new Scanner(System.in);
         int pil;
-        String tgl_kembali;
         System.out.println("Peminjaman mana yang akan di kembalikan ?");
         tampilStatusPinjam(user);
         System.out.print("Pilihan anda :");

@@ -41,6 +41,7 @@ public class User {
                 System.out.println("\u001B[34m║ \u001B[36mTanggal kembali : " + String.format("%-28s", finishedPinjam.get(i).getTglKembaliAsli()) + "\u001B[34m║\u001B[0m");
                 System.out.println("\u001B[34m║ \u001B[32mJudul buku      : " + String.format("%-28s", finishedPinjam.get(i).getBuku().getJudul()) + "\u001B[34m║\u001B[0m");
                 System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-28s", finishedPinjam.get(i).getStatus()) + "\u001B[34m║\u001B[0m");
+                System.out.println("\u001B[34m║ \u001B[35mDenda           : " + String.format("%-28d", finishedPinjam.get(i).getDenda()) + "\u001B[34m║\u001B[0m");
                 System.out.println("\u001B[34m╚═══════════════════════════════════════════════╝\u001B[0m");
             }
         } else {

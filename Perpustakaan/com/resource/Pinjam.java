@@ -8,6 +8,7 @@ public class Pinjam {
     private String tgl_pinjam;
     private String tgl_perjanjian;
     private String tgl_kembali_asli;
+    private long denda = 0;
     private Buku bk;
     private User user;
     private String status = "Belum Selesai";
@@ -38,6 +39,7 @@ public class Pinjam {
         String tgl_kembali = input.nextLine();
         tgl_kembali_asli = tgl_kembali;
         long selisih = selisihHari(this.tgl_perjanjian,tgl_kembali);
+        this.denda = countDenda(selisih,denda);
         System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
         System.out.println("\u001B[34m║     \u001B[96mBUKU TELAH DI KEMBALIKAN    \u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m╠═════════════════════════════════╣\u001B[0m");
@@ -45,7 +47,7 @@ public class Pinjam {
         System.out.printf("\u001B[34m║ TANGGAL KEMBALI    : " + String.format("%-11s", tgl_kembali_asli) +"║\u001B[0m\n");
         System.out.printf("\u001B[34m║ SELISIH HARI       : " + String.format("%-11d", selisih) +"║\u001B[0m\n");
         System.out.printf("\u001B[34m║ KATEGORI DENDA     : " + String.format("%-11s", kategori) +"║\u001B[0m\n");
-        System.out.printf("\u001B[34m║ DENDA              : Rp. " + String.format("%-7d", countDenda(selisih,denda)) +"║\u001B[0m\n");
+        System.out.printf("\u001B[34m║ DENDA              : Rp. " + String.format("%-7d", this.denda) +"║\u001B[0m\n");
         System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
         
         this.status = "Selesai";
@@ -87,5 +89,9 @@ public class Pinjam {
 
     protected String getTglKembaliAsli(){
         return tgl_kembali_asli;
+    }
+
+    protected long getDenda(){
+        return this.denda;
     }
 }
