@@ -82,7 +82,8 @@ public class Display {
             System.out.println("\u001B[34m║\u001B[33m5\u001B[34m| \u001B[39mTampilkan Profile User       \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m6\u001B[34m| \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m7\u001B[34m| \u001B[39mTampilkan Kategori Denda     \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m| \u001B[39mTampilkan Riwayat Pinjam User\u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m╚════════════════════════════════╝\u001B[0m");
             System.out.print("Pilihan anda : ");
             pil = scanner.nextInt();
@@ -118,6 +119,10 @@ public class Display {
                     sistem.displayKategoriDenda();
                     break;
                 case 8:
+                    clearConsole();
+                    sistem.tampilRiwayatUser();
+                    break;
+                case 9:
                     clearConsole();
                     return;
             }

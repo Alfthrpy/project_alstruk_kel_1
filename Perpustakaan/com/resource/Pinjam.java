@@ -15,7 +15,7 @@ public class Pinjam {
 
     Pinjam(User user, String tgl_pinjam, Buku bk){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate tgl_pinjam_date = LocalDate.parse(tgl_pinjam,format);
+        LocalDate tgl_pinjam_date = LocalDate.now();
         LocalDate tgl_kembali_date = tgl_pinjam_date.plusDays(7);
         String tgl_perjanjian = tgl_kembali_date.format(format);
         
@@ -27,8 +27,7 @@ public class Pinjam {
         if(bk.getStock() == 0){
             bk.setStatus();
         }
-        System.out.println("Buku telah berhasil di pinjam!");
-
+        System.out.println("\nBuku telah berhasil di pinjam!");
     }
 
     protected void kembali(User user, int denda, String kategori){

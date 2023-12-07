@@ -1,4 +1,6 @@
 package com.resource;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Map;
@@ -88,7 +90,6 @@ public class Sistem {
 
         Scanner input = new Scanner(System.in);
 
-        String tgl_pinjam;
         int idx_bk,idx_rak;
         tampilBuku();
         System.out.println("Masukan kode rak :");
@@ -97,9 +98,10 @@ public class Sistem {
         idx_bk = input.nextInt();
         input.nextLine();
 
-
-        System.out.print("Masukan tanggal peminjaman :");
-        tgl_pinjam = input.nextLine();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate tgl_pinjam_local = LocalDate.now();
+        String tgl_pinjam = tgl_pinjam_local.format(format);
+        System.out.print("Tanggal peminjaman :" + tgl_pinjam);
 
     
         Rak rk = getRak(idx_rak);
@@ -250,7 +252,7 @@ public class Sistem {
         System.out.print("Mahasiswa mana yang ingin ditampilkan : ");
         int pil = input.nextInt();
         input.nextLine();
-        displayProfile(users.get(pil+1));
+        displayProfile(users.get(pil-1));
  
     }
 
@@ -282,6 +284,25 @@ public class Sistem {
     protected int getDendaByKategori(Buku buku){
         String kategori = buku.getKategori();
         return kategori_denda.get(kategori);
+    }
+
+    protected void tampilRiwayatUser() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Pilih user : ");
+        tampilUser();
+        System.out.print("Pilihan Anda: ");
+        int pil = input.nextInt();
+        input.nextLine();
+    
+        if (pil > 0 && pil <= users.size()) 
+        {
+            User selectedUser = users.get(pil - 1);
+            selectedUser.tampilRiwayat();
+        } 
+        else 
+        {
+            System.out.println("Pilihan tidak valid.");
+        }
     }
 
 
