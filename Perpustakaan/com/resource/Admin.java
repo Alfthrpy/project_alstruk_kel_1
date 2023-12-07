@@ -16,6 +16,4 @@ public class Admin {
     protected String getKode(){
         return kode;
     }
-
-
 }

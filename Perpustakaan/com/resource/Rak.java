@@ -63,6 +63,20 @@ public class Rak {
         }
     }
     
+    protected int tampiljlhBuku() {
+        // Menentukan lebar maksimum untuk setiap kolom
+        int jlhbuku = 0;
+    
+        for (int j = 0; j < storage.size(); j++) {
+            if (j > 0 && storage.get(j).getJudul().equals(storage.get(j - 1).getJudul())) {
+                continue;
+            } else {
+                int stock = storage.get(j).getStock();
+                jlhbuku++;
+            }
+        }
+        return jlhbuku;
+    }
 
     protected Buku getBuku(int index){
         return storage.get(index);

@@ -81,6 +81,21 @@ public class Sistem {
             System.out.println();
         }
     }
+    protected void tampiljlhBuku(){
+        int total = 0;
+        for(Rak rk : rakrak){
+            int bukuPerRak = rk.tampiljlhBuku();
+            total += bukuPerRak;
+            System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
+            System.out.printf("\u001B[34m║         \u001B[96mJUMLAH BUKU RAK %d       \u001B[34m║\u001B[0m\n",rk.getKode());
+            System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
+            System.out.printf("                \u001B[31m%d\u001B[0m\n",rk.tampiljlhBuku());
+        }
+
+        System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
+        System.out.printf("\u001B[34m║       \u001B[96mTOTAL JUMLAH BUKU \u001B[31m%d       \u001B[34m║\u001B[0m\n",total);
+        System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
+    }
 
     protected void pinjamBuku(User user){
         if (user.getDenda() > 0){

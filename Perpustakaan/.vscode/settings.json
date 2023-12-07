@@ -3,5 +3,9 @@
         "com/main",
         "com.perpus",
         ""
-    ]
+    ],
+
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.iconTheme": "vs-nomo-dark",
 }
+
