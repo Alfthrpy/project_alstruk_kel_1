@@ -77,12 +77,7 @@ public class Rak {
         int jlhbuku = 0;
     
         for (int j = 0; j < storage.size(); j++) {
-            if (j > 0 && storage.get(j).getJudul().equals(storage.get(j - 1).getJudul())) {
-                continue;
-            } else {
-                int stock = storage.get(j).getStock();
-                jlhbuku++;
-            }
+            jlhbuku += storage.get(j).getStock();
         }
         return jlhbuku;
     }
@@ -139,6 +134,22 @@ public class Rak {
                 String judul2 = storage.get(j).getJudul();
                 int compare = judul1.compareTo(judul2);
                 if(compare > 0){
+                    Buku temp = storage.get(j-1);
+                    storage.set(j-1, storage.get(j));
+                    storage.set(j, temp);
+                }
+            }
+        }
+    }
+
+    protected void sortByStock(){
+        int n = storage.size();
+        for(int i=0; i<n; i++){
+            for(int j=1; j<(n-i); j++){
+                int stock1 = storage.get(j-1).getStock();
+                int stock2 = storage.get(j).getStock();
+
+                if(stock1 < stock2){
                     Buku temp = storage.get(j-1);
                     storage.set(j-1, storage.get(j));
                     storage.set(j, temp);

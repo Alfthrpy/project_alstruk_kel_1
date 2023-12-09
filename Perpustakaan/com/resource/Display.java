@@ -219,20 +219,32 @@ public class Display {
 
     protected void sortBook(Sistem sistem){
         Scanner input = new Scanner(System.in);
-        System.out.println("Sort berdasarkan apa : ");
-        System.out.println("1. Kategori");
-        System.out.println("2. Judul");
+
+        System.out.println("\u001B[34m╔═══════════════════════╗\u001B[0m");      
+        System.out.println("\u001B[34m║  \u001B[36mSORTING BERDASARKAN  \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╠═══════════════════════╣\u001B[0m");
+        System.out.println("\u001B[34m║  \u001B[33m1 \u001B[0m| \u001B[32mKATEGORI         \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║  \u001B[33m2 \u001B[0m| \u001B[32mJUDUL            \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║  \u001B[33m3 \u001B[0m| \u001B[32mSTOCK            \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╚═══════════════════════╝\u001B[0m");
         System.out.print("Masukan pilihan sort : ");
         int pil = input.nextInt();
         input.nextLine();
 
         switch (pil) {
             case 1:
+                clearConsole();
                 sistem.sortByKategori();
                 break;
         
             case 2:
+                clearConsole();
                 sistem.sortByJudul();
+                break;
+            
+            case 3:
+                clearConsole();
+                sistem.sortByStock();
                 break;
         }
         

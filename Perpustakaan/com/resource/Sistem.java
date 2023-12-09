@@ -93,7 +93,7 @@ public class Sistem {
         }
 
         System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
-        System.out.printf("\u001B[34m║       \u001B[96mTOTAL JUMLAH BUKU \u001B[31m%d       \u001B[34m║\u001B[0m\n",total);
+        System.out.printf("\u001B[34m║       \u001B[96mTOTAL JUMLAH BUKU \u001B[31m%-8d\u001B[34m║\u001B[0m\n",total);
         System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
     }
 
@@ -257,7 +257,8 @@ public class Sistem {
         System.out.println("\u001B[34m║ \u001B[36mNIM                       : " + String.format("%-28s", user.getNim()) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m║ \u001B[32mJurusan                   : " + String.format("%-28s", user.getJurusan()) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m║ \u001B[35mFakultas                  : " + String.format("%-28s", user.getFakultas()) + "\u001B[34m║\u001B[0m");
-        System.out.println("\u001B[34m║ \u001B[35mBuku yang telah di pinjam : " + String.format("%-28s", user.getJmlPinjamSelesai()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[31mBuku yang telah di pinjam : " + String.format("%-28s", user.getJmlPinjamSelesai()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[31mDenda                     : Rp." + String.format("%-25s", user.getDenda()) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m╚═════════════════════════════════════════════════════════╝\u001B[0m");
     }
 
@@ -326,7 +327,7 @@ public class Sistem {
         for(Rak rak : rakrak){
             rak.sortByKategori();
         }
-
+        
         System.out.println("Berhasil di Sort!");
         tampilBuku();
     }
@@ -334,6 +335,15 @@ public class Sistem {
     protected void sortByJudul(){
         for(Rak rak : rakrak){
             rak.sortByJudul();
+        }
+
+        System.out.println("Berhasil di Sort!");
+        tampilBuku();
+    }
+
+    protected void sortByStock(){
+        for(Rak rak : rakrak){
+            rak.sortByStock();
         }
 
         System.out.println("Berhasil di Sort!");
