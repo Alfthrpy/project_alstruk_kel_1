@@ -30,7 +30,6 @@ public class Pinjam {
         if(bk.getStock() == 0){
             bk.setStatus();
         }
-        System.out.println("\nBuku telah berhasil di pinjam!");
     }
 
     protected void kembali(User user, int denda, String kategori){

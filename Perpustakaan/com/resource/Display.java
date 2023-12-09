@@ -266,7 +266,7 @@ public class Display {
                 sistem.sortByStock();
                 break;
             default :
-                System.out.println("\u001B[31mPilihan Anda Salah..\u001B[31m ");
+                System.out.println("\u001B[31mPilihan Anda Salah..\u001B[0m ");
                 break;
         }
         

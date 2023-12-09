@@ -54,4 +54,15 @@ public class Buku {
     protected String getKategori(){
         return kategori;
     }
+
+    protected void displayInfo(){
+        System.out.println("\u001B[34m╔════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[34m║                \u001B[32mINFO BUKU                   \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[36mJudul Buku      : " + String.format("%-25s", judul) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[36mPenulis         : " + String.format("%-25s", penulis) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[36mRak             : " + String.format("%-25s", rak.getKode()) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[32mStock           : " + String.format("%-25s", stock) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-25s", status) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╚════════════════════════════════════════════╝\u001B[0m");
+    }
 }

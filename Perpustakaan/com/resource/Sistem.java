@@ -38,7 +38,7 @@ public class Sistem {
         fakultas = scanner.nextLine();
         User user = new User(nama,nim,jurusan,fakultas);
         users.add(user);
-        System.out.println("User berhasil di tambahkan");
+        System.out.println("\u001B[32mUser berhasil di tambahkan\u001B[0m");
     }
 
     protected void addRak() {
@@ -54,7 +54,7 @@ public class Sistem {
     
         Rak rak = new Rak(kode);
         rakrak.add(rak);
-        System.out.println("Rak baru berhasil ditambahkan");
+        System.out.println("\u001B[32mRak baru berhasil ditambahkan\u001B[0m");
     }
     
     //baruu
@@ -90,7 +90,7 @@ public class Sistem {
         Rak rak = getRak(koderk);
         Buku bk = new Buku(judul, penulis, kategori);
         rak.addBuku(bk);
-        System.out.println("Buku Berhasil ditambahkan ke rak " + rak.getKode());
+        System.out.println("\u001B[32mBuku Berhasil ditambahkan ke rak " + rak.getKode()+"\u001B[0m");
     }
 
     protected void tampilBuku(){
@@ -138,7 +138,7 @@ public class Sistem {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate tgl_pinjam_local = LocalDate.now();
         String tgl_pinjam = tgl_pinjam_local.format(format);
-        System.out.print("Tanggal peminjaman :" + tgl_pinjam);
+        System.out.println("Tanggal peminjaman :" + tgl_pinjam);
 
     
         Rak rk = getRak(idx_rak);
@@ -149,16 +149,17 @@ public class Sistem {
                 if(user.getDenda() == 0){
                     Pinjam pj = new Pinjam(user,tgl_pinjam,bk,rk);
                     user.addPinjam(pj);
+                    System.out.println("\u001B[32mBuku Berhasil di Pinjam!\u001B[0m");
                 } else {
                     System.out.println("Anda Mempunyai Denda!");
                 }
 
             } else {
-                System.out.println("Buku sedang di pinjam!");
+                System.out.println("\u001B[31mBuku sedang di pinjam!\u001B[0m");
             }
         } else {
             System.out.println();
-            System.out.println("\u001B[31mERROR...");
+            System.out.println("\u001B[31mERROR...\u001B[0m");
         }
     }
 
@@ -256,11 +257,13 @@ public class Sistem {
 
         int rak = -1;
         boolean found = false;
+        Buku bk = null;
         for(int i = 0; i < rakrak.size(); i++){
             ArrayList<Buku> buku_buku = rakrak.get(i).getStorage();
             for(int j = 0; j < buku_buku.size(); j++){
                 if(buku_buku.get(j).getJudul().equals(judul)){
                    rak = i;
+                   bk = buku_buku.get(j);
                    found = true;
                    break;
                 }
@@ -269,11 +272,10 @@ public class Sistem {
 
         rak += 1;
         if(found){
-            System.out.println("Buku Ditemukan!");
-            System.out.println("Buku  : "+judul);
-            System.out.println("Rak   : " +rak);
+            System.out.println("\u001B[32mBuku Ditemukan!\u001B[0m");
+            bk.displayInfo();
         } else {
-            System.out.println("Buku Tidak Ditemukan!");
+            System.out.println("\u001B[31mBuku Tidak Ditemukan!\u001B[0m");
         }
 
 
@@ -325,7 +327,7 @@ public class Sistem {
         input.nextLine();
 
         user.bayarDenda(bayar);
-        System.out.println("Pembayaran selesai!");
+        System.out.println("\u001B[32mPembayaran selesai!\u001B[0m");
         displayDenda(user);
 
     }
@@ -377,7 +379,7 @@ public class Sistem {
             rak.sortByKategori();
         }
         
-        System.out.println("Berhasil di Sort!");
+        System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
         tampilBuku();
     }
 
@@ -386,7 +388,7 @@ public class Sistem {
             rak.sortByJudul();
         }
 
-        System.out.println("Berhasil di Sort!");
+        System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
         tampilBuku();
     }
 
@@ -395,7 +397,7 @@ public class Sistem {
             rak.sortByStock();
         }
 
-        System.out.println("Berhasil di Sort!");
+        System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
         tampilBuku();
     }
     
@@ -418,12 +420,13 @@ public class Sistem {
 
         if(rak != null){
             if (index_buku <= 0 || index_buku > rak.tampiljlhBuku()) {
-                System.out.println("Nomor buku tidak valid");
+                System.out.println("\u001B[31mNomor buku tidak valid\u001B[0m");
                 return;
             }
             rak.deleteBuku(index_buku-1);
+            System.out.println("\u001B[32mBuku Berhasil di Hapus!\u001B[0m");
         } else {
-            System.out.println("Rak Tidak Ditemukan");
+            System.out.println("\u001B[31mRak Tidak Ditemukan\u001B[0m");
         }
     }
 
@@ -436,13 +439,18 @@ public class Sistem {
         input.nextLine();
     
         if (pil <= 0 || pil > users.size()) {
-            System.out.println("Nomor tidak valid");
+            System.out.println("\u001B[31mNomor tidak valid\u001B[0m");
             return;
         }
     
         User userToDelete = users.get(pil - 1);
         users.remove(userToDelete);
-        System.out.println("User berhasil dihapus!");
+        System.out.println("\u001B[32mUser berhasil dihapus!\u001B[0m");
+    }
+
+    public void addBuku(Buku bk, Rak rk){
+        rk.addBuku(bk);
+        bk.aturRak(rk);
     }
     
 }
