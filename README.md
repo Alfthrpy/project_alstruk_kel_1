@@ -1,6 +1,6 @@
-<span style= "color:blue"># Kelompok 1 Alstruk Data</span>
+# Kelompok 1 Alstruk Data
 
-Repositori ini berisi tugas dan proyek terkait Algoritma dan Struktur Data dari Kelompok 1. Berikut adalah anggota kelompok:
+<span style= "color:blue">Repositori ini berisi tugas dan proyek terkait Algoritma dan Struktur Data dari Kelompok 1. Berikut adalah anggota kelompok:</span>
 
 - **Muhammad Rizki Al-Fathir**
 - **Muhammad Saifurridwani I'jazi**
