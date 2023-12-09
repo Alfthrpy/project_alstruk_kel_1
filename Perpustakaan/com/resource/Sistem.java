@@ -320,5 +320,27 @@ public class Sistem {
         }
     }
 
+    
+
+    protected void sortByKategori(){
+        for(Rak rak : rakrak){
+            rak.sortByKategori();
+        }
+
+        System.out.println("Berhasil di Sort!");
+        tampilBuku();
+    }
+
+    protected void sortByJudul(){
+        for(Rak rak : rakrak){
+            rak.sortByJudul();
+        }
+
+        System.out.println("Berhasil di Sort!");
+        tampilBuku();
+    }
+
+
+
 
 }

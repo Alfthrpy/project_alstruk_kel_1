@@ -44,12 +44,13 @@ public class Rak {
     
         // Menampilkan header tabel
         System.out.printf(
-                "%s%-5s%s | %s%-"+judulWidth+"s%s | %s%-"+penulisWidth+"s%s | %s%-8s%s | %s%s%s\n",
-                yellowColor, "No", resetColor,
-                yellowColor, "Judul", resetColor,
-                yellowColor, "Penulis", resetColor,
-                yellowColor, "Stok", resetColor,
-                yellowColor, "Status", resetColor
+            "%s%-5s%s | %s%-"+judulWidth+"s%s | %s%-"+penulisWidth+"s%s | %s%-8s%s | %s%-10s%s | %s%-10s%s \n",
+            yellowColor, "No", resetColor,
+            yellowColor, "Judul", resetColor,
+            yellowColor, "Penulis", resetColor,
+            yellowColor, "Stok", resetColor,
+            yellowColor, "Kategori", resetColor,
+            yellowColor, "Status", resetColor
         );
     
         // Menampilkan data buku
@@ -58,7 +59,15 @@ public class Rak {
                 continue;
             } else {
                 int stock = storage.get(i).getStock();
-                System.out.printf("%-5d | %-"+judulWidth+"s | %-"+penulisWidth+"s | %-8d | %s\n", i + 1, storage.get(i).getJudul(), storage.get(i).getPenulis(), stock, storage.get(i).getStatus());
+                System.out.printf("%-5d | %-"+judulWidth+"s | %-"+penulisWidth+"s | %-8d | %-10s | %s\n", 
+                i + 1, 
+                storage.get(i).getJudul(), 
+                storage.get(i).getPenulis(), 
+                stock, 
+                storage.get(i).getKategori(),  // Ambil kategori dari objek storage
+                storage.get(i).getStatus()
+                );
+
             }
         }
     }
@@ -103,6 +112,37 @@ public class Rak {
                     buku.setAktif();
                 }
                 break;
+            }
+        }
+    }
+
+    protected void sortByKategori(){
+        int n = storage.size();
+
+        for(int i=0; i<n; i++){
+            for(int j=1; j<(n-i); j++){
+                int compare = storage.get(j-1).getKategori().compareTo(storage.get(j).getKategori());
+                if(compare > 0){
+                    Buku temp = storage.get(j-1);
+                    storage.set(j-1, storage.get(j));
+                    storage.set(j, temp);
+                }
+            }
+        }
+    }
+
+    protected void sortByJudul(){
+        int n = storage.size();
+        for(int i=0; i<n; i++){
+            for(int j=1; j<(n-i); j++){
+                String judul1 = storage.get(j-1).getJudul();
+                String judul2 = storage.get(j).getJudul();
+                int compare = judul1.compareTo(judul2);
+                if(compare > 0){
+                    Buku temp = storage.get(j-1);
+                    storage.set(j-1, storage.get(j));
+                    storage.set(j, temp);
+                }
             }
         }
     }

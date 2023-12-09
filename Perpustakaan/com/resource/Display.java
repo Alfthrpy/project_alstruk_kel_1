@@ -6,20 +6,21 @@ public class Display {
     protected void displayMenuUser(Sistem sistem,User user){
         Scanner scanner = new Scanner(System.in);
         while(true){
-            System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
-            System.out.println("\u001B[34m║           \u001B[33mPERPUSTAKAAN\u001B[34m          ║\u001B[0m");
-            System.out.println("\u001B[34m║          \u001B[35mSelamat Datang\u001B[34m         ║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m1\u001B[34m | \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m2\u001B[34m | \u001B[39mCari Buku                    \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m3\u001B[34m | \u001B[39mPinjam Buku                  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m4\u001B[34m | \u001B[39mKembalikan Buku              \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m | \u001B[39mTampilkan Riwayat Peminjaman \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m | \u001B[39mTampilkan Status Peminjaman  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m | \u001B[39mCek denda                    \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m | \u001B[39mBayar Denda                  \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m | \u001B[39mProfil                       \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m10\u001B[34m| \u001B[39mLog out                      \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
+            System.out.println("\u001B[34m╔══════════════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[34m║           \u001B[33mPERPUSTAKAAN\u001B[34m           ║\u001B[0m");
+            System.out.println("\u001B[34m║          \u001B[35mSelamat Datang\u001B[34m          ║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m1\u001B[34m | \u001B[39mTampilkan Buku                \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m2\u001B[34m | \u001B[39mSort Buku                     \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m3\u001B[34m | \u001B[39mCari Buku                     \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m4\u001B[34m | \u001B[39mPinjam Buku                   \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m5\u001B[34m | \u001B[39mKembalikan Buku               \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m6\u001B[34m | \u001B[39mTampilkan Riwayat Peminjaman  \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m | \u001B[39mTampilkan Status Peminjaman   \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m | \u001B[39mCek denda                     \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m | \u001B[39mBayar Denda                   \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m10\u001B[34m| \u001B[39mProfil                        \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m11\u001B[34m| \u001B[39mLog out                       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m╚══════════════════════════════════╝\u001B[0m");
             System.out.print("Pilihan anda : ");
             int pil = scanner.nextInt();
             switch(pil){
@@ -29,37 +30,41 @@ public class Display {
                     break;
                 case 2:
                     clearConsole();
-                    sistem.searchBook();
+                    sortBook(sistem);
                     break;
                 case 3:
                     clearConsole();
-                    sistem.pinjamBuku(user);
+                    sistem.searchBook();
                     break;
                 case 4:
                     clearConsole();
-                    sistem.kembaliBuku(user);
+                    sistem.pinjamBuku(user);
                     break;
                 case 5:
                     clearConsole();
-                    sistem.tampilRiwayat(user);
+                    sistem.kembaliBuku(user);
                     break;
                 case 6:
                     clearConsole();
-                    sistem.tampilStatusPinjam(user);
+                    sistem.tampilRiwayat(user);
                     break;
                 case 7:
                     clearConsole();
-                    sistem.displayDenda(user);
+                    sistem.tampilStatusPinjam(user);
                     break;
                 case 8:
                     clearConsole();
-                    sistem.bayarDenda(user);;
+                    sistem.displayDenda(user);
                     break;
                 case 9:
                     clearConsole();
-                    sistem.displayProfile(user);
+                    sistem.bayarDenda(user);;
                     break;
                 case 10:
+                    clearConsole();
+                    sistem.displayProfile(user);
+                    break;
+                case 11:
                     clearConsole();
                     return;
             }
@@ -210,6 +215,27 @@ public class Display {
 
     protected void displayjlhBuku(Sistem sistem){
         System.out.println();
+    }
+
+    protected void sortBook(Sistem sistem){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Sort berdasarkan apa : ");
+        System.out.println("1. Kategori");
+        System.out.println("2. Judul");
+        System.out.print("Masukan pilihan sort : ");
+        int pil = input.nextInt();
+        input.nextLine();
+
+        switch (pil) {
+            case 1:
+                sistem.sortByKategori();
+                break;
+        
+            case 2:
+                sistem.sortByJudul();
+                break;
+        }
+        
     }
     
 
