@@ -41,15 +41,32 @@ public class Sistem {
         System.out.println("User berhasil di tambahkan");
     }
 
-    protected void addRak(){
+    protected void addRak() {
         Scanner scanner = new Scanner(System.in);
         int kode;
-        System.out.print("Masukan kode rak :");
+        System.out.print("Masukan kode rak: ");
         kode = scanner.nextInt();
+    
+        if (rakAlreadyExists(kode)) {
+            System.out.println("\u001B[31mKode rak sudah ada! Rak tidak dapat ditambahkan.\u001B[0m");
+            return;
+        }
+    
         Rak rak = new Rak(kode);
         rakrak.add(rak);
-        System.out.println("Rak baru berhasil di tambahkan");
+        System.out.println("Rak baru berhasil ditambahkan");
     }
+    
+    //baruu
+    private boolean rakAlreadyExists(int kode) {
+        for (Rak rak : rakrak) {
+            if (rak.getKode() == kode) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     protected void addBook(){
         String judul,penulis,kategori;
@@ -65,10 +82,15 @@ public class Sistem {
         koderk = scanner.nextInt();
         scanner.nextLine();
 
+        if (koderk <= 0 || koderk > rakrak.size()) {
+            System.out.println("\u001B[31mPilihan tidak valid! Rak tidak tersedia!\u001B[0m");
+            return;
+        }
+        
         Rak rak = getRak(koderk);
-        Buku bk = new Buku(judul,penulis,kategori);
+        Buku bk = new Buku(judul, penulis, kategori);
         rak.addBuku(bk);
-        System.out.println("Buku Berhasil di tambahkan ke rak " + rak.getKode());
+        System.out.println("Buku Berhasil ditambahkan ke rak " + rak.getKode());
     }
 
     protected void tampilBuku(){
@@ -107,9 +129,9 @@ public class Sistem {
 
         int idx_bk,idx_rak;
         tampilBuku();
-        System.out.println("Masukan kode rak :");
+        System.out.print("Masukan kode rak : ");
         idx_rak = input.nextInt();
-        System.out.println("Masukan pilihan buku : ");
+        System.out.print("Masukan pilihan buku : ");
         idx_bk = input.nextInt();
         input.nextLine();
 
@@ -135,11 +157,16 @@ public class Sistem {
                 System.out.println("Buku sedang di pinjam!");
             }
         } else {
-            System.out.println("error");
+            System.out.println();
+            System.out.println("\u001B[31mERROR...");
         }
     }
 
     protected void tampilUser(){
+        if (users.isEmpty()) {
+            System.out.println("\u001B[31mTidak ada user yang terdaftar\u001B[0m");
+            return;
+        }
 
         int maxName = 0;
         int maxNim = 0;
@@ -188,7 +215,7 @@ public class Sistem {
             System.out.println("\u001B[31mAnda tidak sedang meminjam Buku!\u001B[0m");
             return;
         }
-
+    
         Scanner input = new Scanner(System.in);
         int pil;
         System.out.println("Peminjaman mana yang akan di kembalikan ?");
@@ -196,12 +223,19 @@ public class Sistem {
         System.out.print("Pilihan anda :");
         pil = input.nextInt();
         input.nextLine();
-        Pinjam pj = user.getPinjam(pil-1);
+    
+        // Check if the selected index is valid
+        if (pil <= 0 || pil > user.getJmlPinjam()) {
+            System.out.println("\u001B[31mPilihan tidak valid! Silahkan pilih dengan benar!\u001B[0m");
+            return;
+        }
+    
+        Pinjam pj = user.getPinjam(pil - 1);
         int denda = getDendaByKategori(pj.getBuku());
-        user.finishedPinjam(pj);
-        pj.kembali(user,denda,pj.getBuku().getKategori());
-
+        user.finishedPinjam(pj);  
+        pj.kembali(user, denda, pj.getBuku().getKategori());
     }
+    
 
     protected void tampilRiwayat(User user){
         user.tampilRiwayat();
@@ -262,15 +296,27 @@ public class Sistem {
         System.out.println("\u001B[34m╚═════════════════════════════════════════════════════════╝\u001B[0m");
     }
 
-    protected void displayProfileAll(){
+    protected void displayProfileAll() {
         Scanner input = new Scanner(System.in);
+    
+        if (users.isEmpty()) {
+            System.out.println("\u001B[31mTidak ada user yang terdaftar..\u001B[0m");
+            return;
+        }
+    
         tampilUser();
-        System.out.print("Mahasiswa mana yang ingin ditampilkan : ");
+        System.out.print("Nomor mahasiswa yang ingin ditampilkan : ");
         int pil = input.nextInt();
         input.nextLine();
-        displayProfile(users.get(pil-1));
- 
+    
+        if (pil <= 0 || pil > users.size()) {
+            System.out.println("Nomor tidak valid");
+            return;
+        }
+    
+        displayProfile(users.get(pil - 1));
     }
+    
 
     protected void bayarDenda(User user){
         Scanner input = new Scanner(System.in);
@@ -304,6 +350,11 @@ public class Sistem {
 
     protected void tampilRiwayatUser() {
         Scanner input = new Scanner(System.in);
+        if (users.isEmpty()) {
+            System.out.println("\u001B[31mTidak ada user yang terdaftar\u001B[0m");
+            return;
+        }
+
         System.out.println("Pilih user : ");
         tampilUser();
         System.out.print("Pilihan Anda: ");
@@ -320,8 +371,6 @@ public class Sistem {
             System.out.println("Pilihan tidak valid.");
         }
     }
-
-    
 
     protected void sortByKategori(){
         for(Rak rak : rakrak){
@@ -368,17 +417,32 @@ public class Sistem {
         Rak rak = getRak(index_rak);
 
         if(rak != null){
+            if (index_buku <= 0 || index_buku > rak.tampiljlhBuku()) {
+                System.out.println("Nomor buku tidak valid");
+                return;
+            }
             rak.deleteBuku(index_buku-1);
         } else {
             System.out.println("Rak Tidak Ditemukan");
         }
-
-
-
     }
 
-
-
-
-
+    protected void hapusUser() {
+        Scanner input = new Scanner(System.in);
+        tampilUser();
+        
+        System.out.print("Nomor user yang ingin dihapus: ");
+        int pil = input.nextInt();
+        input.nextLine();
+    
+        if (pil <= 0 || pil > users.size()) {
+            System.out.println("Nomor tidak valid");
+            return;
+        }
+    
+        User userToDelete = users.get(pil - 1);
+        users.remove(userToDelete);
+        System.out.println("User berhasil dihapus!");
+    }
+    
 }
