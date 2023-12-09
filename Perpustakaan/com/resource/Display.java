@@ -89,12 +89,13 @@ public class Display {
             System.out.println("\u001B[34m║\u001B[33m4\u001B[34m | \u001B[39mHapus User                   \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m5\u001B[34m | \u001B[39mHapus Buku                   \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m║\u001B[33m6\u001B[34m | \u001B[39mTampilkan User               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m | \u001B[39mTampilkan Profile User       \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m | \u001B[39mTampilkan Riwayat User       \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m | \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m10\u001B[34m| \u001B[39mTampilkan Jumlah Buku        \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m11\u001B[34m| \u001B[39mTampilkan Kategori Denda     \u001B[34m║\u001B[0m");
-            System.out.println("\u001B[34m║\u001B[33m12\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m7\u001B[34m | \u001B[39mSort User                    \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m8\u001B[34m | \u001B[39mTampilkan Profile User       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m9\u001B[34m | \u001B[39mTampilkan Riwayat User       \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m10\u001B[34m| \u001B[39mTampilkan Buku               \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m11\u001B[34m| \u001B[39mTampilkan Jumlah Buku        \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m12\u001B[34m| \u001B[39mTampilkan Kategori Denda     \u001B[34m║\u001B[0m");
+            System.out.println("\u001B[34m║\u001B[33m13\u001B[34m| \u001B[39mLogout                       \u001B[34m║\u001B[0m");
             System.out.println("\u001B[34m╚═════════════════════════════════╝\u001B[0m");
             System.out.print("Pilihan anda : ");
             pil = scanner.nextInt();
@@ -127,25 +128,29 @@ public class Display {
                     break;
                 case 7:
                     clearConsole();
-                    sistem.displayProfileAll();
+                    sortUser(sistem);
                     break;
                 case 8:
                     clearConsole();
-                    sistem.tampilRiwayatUser();
+                    sistem.displayProfileAll();
                     break;
                 case 9:
                     clearConsole();
-                    sistem.tampilBuku();
+                    sistem.tampilRiwayatUser();
                     break;
                 case 10:
                     clearConsole();
-                    sistem.tampiljlhBuku();
+                    sistem.tampilBuku();
                     break;
                 case 11:
                     clearConsole();
-                    sistem.displayKategoriDenda();
+                    sistem.tampiljlhBuku();
                     break;
                 case 12:
+                    clearConsole();
+                    sistem.displayKategoriDenda();
+                    break;
+                case 13:
                     clearConsole();
                     return;
                 default :
@@ -253,18 +258,49 @@ public class Display {
         switch (pil) {
             case 1:
                 clearConsole();
-                sistem.sortByKategori();
+                sistem.sortBukuByKategori();
                 break;
         
             case 2:
                 clearConsole();
-                sistem.sortByJudul();
+                sistem.sortBukuByJudul();
                 break;
             
             case 3:
                 clearConsole();
-                sistem.sortByStock();
+                sistem.sortBukuByStock();
                 break;
+            default :
+                System.out.println("\u001B[31mPilihan Anda Salah..\u001B[0m ");
+                break;
+        }
+        
+    }
+
+    protected void sortUser(Sistem sistem){
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("\u001B[34m╔═══════════════════════╗\u001B[0m");      
+        System.out.println("\u001B[34m║  \u001B[36mSORTING BERDASARKAN  \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╠═══════════════════════╣\u001B[0m");
+        System.out.println("\u001B[34m║  \u001B[33m1 \u001B[0m| \u001B[32mNAMA             \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║  \u001B[33m2 \u001B[0m| \u001B[32mNIM              \u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m╚═══════════════════════╝\u001B[0m");
+        System.out.print("Masukan pilihan sort : ");
+        int pil = input.nextInt();
+        input.nextLine();
+
+        switch (pil) {
+            case 1:
+                clearConsole();
+                sistem.sortUserByNama();
+                break;
+        
+            case 2:
+                clearConsole();
+                sistem.sortUserByNim();
+                break;
+            
             default :
                 System.out.println("\u001B[31mPilihan Anda Salah..\u001B[0m ");
                 break;

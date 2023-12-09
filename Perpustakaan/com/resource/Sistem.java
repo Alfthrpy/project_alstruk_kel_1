@@ -374,7 +374,7 @@ public class Sistem {
         }
     }
 
-    protected void sortByKategori(){
+    protected void sortBukuByKategori(){
         for(Rak rak : rakrak){
             rak.sortByKategori();
         }
@@ -383,7 +383,7 @@ public class Sistem {
         tampilBuku();
     }
 
-    protected void sortByJudul(){
+    protected void sortBukuByJudul(){
         for(Rak rak : rakrak){
             rak.sortByJudul();
         }
@@ -392,7 +392,7 @@ public class Sistem {
         tampilBuku();
     }
 
-    protected void sortByStock(){
+    protected void sortBukuByStock(){
         for(Rak rak : rakrak){
             rak.sortByStock();
         }
@@ -452,5 +452,36 @@ public class Sistem {
         rk.addBuku(bk);
         bk.aturRak(rk);
     }
+
+    protected void sortUserByNama(){
+        int n = users.size();
+        for (int i = 1; i < n; ++i) {
+            User key = users.get(i);
+            int j = i - 1;
+            while (j >= 0 && users.get(j).getNama().compareTo(key.getNama()) > 0) {
+                users.set(j + 1, users.get(j));
+                j = j - 1;
+            }
+            users.set(j + 1, key);
+        }
+        System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
+        tampilUser();
+    }
+
+    protected void sortUserByNim(){
+        int n = users.size();
+        for (int i = 1; i < n; ++i) {
+            User key = users.get(i);
+            int j = i - 1;
+            while (j >= 0 && users.get(j).getNim().compareTo(key.getNim()) > 0) {
+                users.set(j + 1, users.get(j));
+                j = j - 1;
+            }
+            users.set(j + 1, key);
+        }
+        System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
+        tampilUser();
+    }
+
     
 }
