@@ -59,6 +59,7 @@ public class App {
         while(true){
             if(display.displayHome(sistem)){
                 System.out.println("Program Selesai!");
+                System.out.println("Terimakasih!");
                 break;
             }
         }
