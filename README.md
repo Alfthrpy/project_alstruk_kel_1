@@ -1,4 +1,4 @@
-# Kelompok 1 Alstruk Data
+<span style= "color:blue"># Kelompok 1 Alstruk Data</span>
 
 Repositori ini berisi tugas dan proyek terkait Algoritma dan Struktur Data dari Kelompok 1. Berikut adalah anggota kelompok:
 
