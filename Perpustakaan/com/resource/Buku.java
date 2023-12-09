@@ -62,6 +62,7 @@ public class Buku {
         System.out.println("\u001B[34m║ \u001B[36mPenulis         : " + String.format("%-25s", penulis) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m║ \u001B[36mRak             : " + String.format("%-25s", rak.getKode()) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m║ \u001B[32mStock           : " + String.format("%-25s", stock) + "\u001B[34m║\u001B[0m");
+        System.out.println("\u001B[34m║ \u001B[32mKategori        : " + String.format("%-25s", kategori) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m║ \u001B[35mStatus          : " + String.format("%-25s", status) + "\u001B[34m║\u001B[0m");
         System.out.println("\u001B[34m╚════════════════════════════════════════════╝\u001B[0m");
     }
