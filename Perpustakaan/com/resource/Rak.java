@@ -157,4 +157,23 @@ public class Rak {
             }
         }
     }
+
+    protected void deleteBuku(int index){
+        if(storage.get(index).getStatus().equals("Tersedia")){
+            if(storage.get(index).getStock() <= 1){
+                storage.remove(index);
+            } else {
+                storage.get(index).removeStock();
+            }
+        } else if(storage.get(index).getStatus().equals("Tidak Tersedia")){
+            if(storage.get(index).getStock() <= 1){
+                System.out.println("Buku Sedang Dipinjam !");
+                return;
+            } else {
+                storage.get(index).removeStock();
+            }
+        }
+
+        System.out.println("Buku Berhasil Di Hapus!");
+    }
 }

@@ -125,7 +125,7 @@ public class Sistem {
             int stock = bk.getStock();
             if(stock > 0){
                 if(user.getDenda() == 0){
-                    Pinjam pj = new Pinjam(user,tgl_pinjam,bk);
+                    Pinjam pj = new Pinjam(user,tgl_pinjam,bk,rk);
                     user.addPinjam(pj);
                 } else {
                     System.out.println("Anda Mempunyai Denda!");
@@ -349,6 +349,34 @@ public class Sistem {
         System.out.println("Berhasil di Sort!");
         tampilBuku();
     }
+    
+    protected void deleteBuku() {
+        Scanner input = new Scanner(System.in);
+
+
+        tampilBuku();
+
+        System.out.print("Masukan posisi Rak Buku : ");
+        int index_rak = input.nextInt();
+        input.nextLine();
+        System.out.print("Masukan No buku         : ");
+        int index_buku = input.nextInt();
+        input.nextLine();
+
+
+
+        Rak rak = getRak(index_rak);
+
+        if(rak != null){
+            rak.deleteBuku(index_buku-1);
+        } else {
+            System.out.println("Rak Tidak Ditemukan");
+        }
+
+
+
+    }
+
 
 
 

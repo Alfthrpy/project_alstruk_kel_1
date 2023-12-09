@@ -10,10 +10,11 @@ public class Pinjam {
     private String tgl_kembali_asli;
     private long denda = 0;
     private Buku bk;
+    private Rak rk;
     private User user;
     private String status = "Belum Selesai";
 
-    Pinjam(User user, String tgl_pinjam, Buku bk){
+    Pinjam(User user, String tgl_pinjam, Buku bk, Rak rk){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate tgl_pinjam_date = LocalDate.now();
         LocalDate tgl_kembali_date = tgl_pinjam_date.plusDays(7);
@@ -23,6 +24,7 @@ public class Pinjam {
         this.tgl_perjanjian = tgl_perjanjian;
         this.user = user;
         this.bk = bk;
+        this.rk = rk;
         bk.removeStock();
         if(bk.getStock() == 0){
             bk.setStatus();
@@ -52,6 +54,9 @@ public class Pinjam {
         this.status = "Selesai";
         bk.setAktif();
         bk.addStock();
+        if(!rk.checkBook(bk)){
+            rk.addBuku(bk);
+        }
         
         user.addDenda(countDenda(selisih,denda));
     }
