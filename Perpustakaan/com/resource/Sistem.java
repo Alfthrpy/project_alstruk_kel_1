@@ -416,7 +416,7 @@ public class Sistem {
 
 
 
-        Rak rak = getRak(index_rak);
+        Rak rak = getRak(index_rak-1);
 
         if(rak != null){
             if (index_buku <= 0 || index_buku > rak.tampiljlhBuku()) {
@@ -424,7 +424,7 @@ public class Sistem {
                 return;
             }
             rak.deleteBuku(index_buku-1);
-            System.out.println("\u001B[32mBuku Berhasil di Hapus!\u001B[0m");
+            
         } else {
             System.out.println("\u001B[31mRak Tidak Ditemukan\u001B[0m");
         }

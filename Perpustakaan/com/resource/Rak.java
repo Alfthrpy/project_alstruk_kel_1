@@ -165,9 +165,10 @@ public class Rak {
             } else {
                 storage.get(index).removeStock();
             }
+            System.out.println("\u001B[32mBuku Berhasil di Hapus!\u001B[0m");
         } else if(storage.get(index).getStatus().equals("Tidak Tersedia")){
             if(storage.get(index).getStock() <= 1){
-                System.out.println("Buku Sedang Dipinjam !");
+                System.out.println("\u001B[31mBuku Sedang Dipinjam!\u001B[0m");
                 return;
             } else {
                 storage.get(index).removeStock();
