@@ -39,9 +39,6 @@ public class User {
         return jurusan;
     }
 
-    protected int getJmlRiwayat(){
-        return finishedPinjam.size();
-    }
 
     protected String getFakultas(){
         return fakultas;
