@@ -1,6 +1,7 @@
 package com.resource;
+import java.io.Serializable;
 
-public class Admin {
+public class Admin implements Serializable{
     private String nama;
     private String kode;
 

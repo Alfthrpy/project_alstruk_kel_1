@@ -1,4 +1,9 @@
 package com.resource;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -9,6 +14,7 @@ public class Sistem {
     private ArrayList<User> users = new ArrayList<User>();
     private ArrayList<Rak> rakrak = new ArrayList<Rak>();
     private ArrayList<Admin> admins = new ArrayList<Admin>();
+
     private HashMap<String, Integer> kategori_denda = new HashMap<String, Integer>();
 
     public Sistem(Admin admin, User user) {
@@ -481,6 +487,32 @@ public class Sistem {
         }
         System.out.println("\u001B[32mBerhasil di Sort!\u001B[0m");
         tampilUser();
+    }
+
+    public void saveStorage(){
+        Storage storage = new Storage(rakrak,users,admins);
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("Database.obj"))) {
+            outputStream.writeObject(storage);
+            System.out.println("Perubahan telah di simpan!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadStorage(){
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("Database.obj"))) {
+            // Membaca koleksi objek dari file
+            Storage storage = (Storage) inputStream.readObject();
+            System.out.println("Berhasil Load Data!");
+
+            rakrak = storage.getRak();
+            users = storage.getUsers();
+            admins = storage.getAdmins();
+            // Gunakan objectList sesuai kebutuhan
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     

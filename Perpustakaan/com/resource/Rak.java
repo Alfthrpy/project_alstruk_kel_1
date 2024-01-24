@@ -1,8 +1,8 @@
 package com.resource;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Rak {
+public class Rak implements Serializable{
     private int kode_rak;
     private ArrayList<Buku> storage = new ArrayList<Buku>();
 

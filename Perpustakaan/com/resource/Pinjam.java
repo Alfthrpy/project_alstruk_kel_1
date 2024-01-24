@@ -3,8 +3,9 @@ import java.time.temporal.ChronoUnit;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Pinjam {
+public class Pinjam implements Serializable {
     private String tgl_pinjam;
     private String tgl_perjanjian;
     private String tgl_kembali_asli;

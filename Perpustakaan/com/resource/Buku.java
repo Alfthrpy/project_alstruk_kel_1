@@ -1,6 +1,7 @@
 package com.resource;
+import java.io.Serializable;
 
-public class Buku {
+public class Buku implements Serializable{
     private String judul;
     private String penulis;
     private String status = "Tersedia";

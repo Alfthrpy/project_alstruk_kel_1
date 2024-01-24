@@ -6,6 +6,7 @@ public class Display {
     protected void displayMenuUser(Sistem sistem,User user){
         Scanner scanner = new Scanner(System.in);
         while(true){
+            sistem.saveStorage();
             System.out.println("\u001B[34m╔══════════════════════════════════╗\u001B[0m");
             System.out.println("\u001B[34m║           \u001B[33mPERPUSTAKAAN\u001B[34m           ║\u001B[0m");
             System.out.println("\u001B[34m║          \u001B[35mSelamat Datang\u001B[34m          ║\u001B[0m");
@@ -80,6 +81,7 @@ public class Display {
         boolean flag = true;
         int pil;
         while(flag){
+            sistem.saveStorage();
             System.out.println("\u001B[34m╔═════════════════════════════════╗\u001B[0m");
             System.out.println("\u001B[34m║       \u001B[33mADMIN PERPUSTAKAAN\u001B[34m        ║\u001B[0m");
             System.out.println("\u001B[34m║         \u001B[35mSelamat Datang\u001B[34m          ║\u001B[0m");

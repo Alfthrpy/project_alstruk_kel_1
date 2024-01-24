@@ -54,6 +54,8 @@ public class App {
         sistem.addBuku(bk6,rak2);
         sistem.addBuku(bk7,rak2);
         sistem.addBuku(bk8,rak2);
+        sistem.loadStorage();
+        
 
         
 

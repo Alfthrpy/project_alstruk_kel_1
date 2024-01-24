@@ -1,8 +1,9 @@
 package com.resource;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable{
     private String nama;
     private String nim;
     private String jurusan;
